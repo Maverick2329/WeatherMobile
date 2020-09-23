@@ -36,7 +36,12 @@ namespace TheWeather.ViewModels
         {
             SearchCommand = new Command(async (searchTerm) =>
             {
-                await GetData("https://api.weatherbit.io/v2.0/current?lat=31.72024&lon=-106.46084&key=71f4377a76e24db1ad0cadbeff478b2c");
+                var entrada = searchTerm as string;
+                var datos = entrada.Split(',');
+                var lat = datos[0];
+                var lon = datos[1];
+                //await GetData("https://api.weatherbit.io/v2.0/current?lat=31.72024&lon=-106.46084&key=71f4377a76e24db1ad0cadbeff478b2c");
+                await GetData($"https://api.weatherbit.io/v2.0/current?lat={lat}&lon={lon}&key=71f4377a76e24db1ad0cadbeff478b2c&lang=es");
             });
         }
 
